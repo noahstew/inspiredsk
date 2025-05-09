@@ -1,9 +1,30 @@
 @import 'tailwindcss';
 
+@font-face {
+  font-family: 'cooper';
+  src: url('/fonts/cooper.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'league-spartan';
+  src: url('/fonts/ls.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'quicksand';
+  src: url('/fonts/quicksand.otf') format('opentype');
+}
+
 @theme {
+  /* Colors */
   --color-peach: #e0ae7c;
   --color-pistachio: #67825e;
   --color-cream: #f1efe7;
   --color-olive: #3f501b;
   --color-persimmon: #e79a45;
+
+  /* Fonts */
+  --font-cooper: 'cooper', sans-serif;
+  --font-league-spartan: 'league-spartan', sans-serif;
+  --font-quicksand: 'quicksand', sans-serif;
 }
