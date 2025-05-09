@@ -1,6 +1,11 @@
 import type { Metadata } from 'next';
 import './globals.css';
 
+/*
+TODO: 
+- Add a favicon
+- Add SEO
+*/
 export const metadata: Metadata = {
   title: 'InspiredSK | Home ',
   description: '',
