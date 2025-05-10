@@ -7,8 +7,8 @@ TODO:
 - Add SEO
 */
 export const metadata: Metadata = {
-  title: 'InspiredSK | Home ',
-  description: '',
+  title: 'Home | InspiredSK',
+  description: 'Meet the team behind our project.',
 };
 
 export default function RootLayout({
