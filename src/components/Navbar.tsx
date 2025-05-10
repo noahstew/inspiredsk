@@ -9,7 +9,7 @@ function Navbar() {
       </Link>
       <ul className="flex space-x-8 text-peach mt-2 text-3xl text-right font-league-spartan font-bold">
         <li className="hover:text-persimmon">
-          <Link href="/">About</Link>
+          <Link href="/about">About</Link>
         </li>
         <li className="hover:text-persimmon">
           <Link href="/team">Team</Link>
