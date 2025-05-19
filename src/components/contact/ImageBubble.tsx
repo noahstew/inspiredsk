@@ -8,8 +8,8 @@ function ImageBubble() {
         <Image
           src="/assets/donation.png"
           alt="Image with the team"
-          layout="fill"
-          objectFit="cover"
+          fill
+          style={{ objectFit: 'cover' }}
         />
       </div>
     </div>
