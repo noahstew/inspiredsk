@@ -35,6 +35,7 @@ function ContactForm() {
         setStatus('error');
       }
     } catch (error) {
+      console.error('Error submitting form:', error);
       setStatus('error');
     }
   };
