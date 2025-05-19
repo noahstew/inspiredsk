@@ -2,7 +2,7 @@ function AboutHero() {
   return (
     <div className="relative h-screen bg-[url(/assets/hero.png)] bg-cover bg-center">
       {/* Text with higher z-index */}
-      <div className="relative z-10 flex flex-col justify-around h-full ml-4">
+      <div className="relative z-10 flex flex-col justify-around h-full p-8">
         <h1 className="text-7xl md:text-8xl font-bold text-pistachio font-league-spartan">
           OUR MISSION
         </h1>
