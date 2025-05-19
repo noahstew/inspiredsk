@@ -42,7 +42,7 @@ function GoalsSection() {
         OUR GOALS
       </h2>
       <div className="max-w-6xl mx-auto flex flex-col items-center justify-center p-8 md:p-12 font-league-spartan gap-8">
-        {goals.map((goal, index) => (
+        {goals.map((goal) => (
           <div key={goal.id}>
             <Goal
               icon={goal.icon}

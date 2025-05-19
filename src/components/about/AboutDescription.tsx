@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 function AboutDescription() {
   return (
     <div className="flex flex-col md:flex-row items-center bg-cream p-8 md:p-12 font-league-spartan ">
@@ -19,7 +21,7 @@ function AboutDescription() {
         </p>
       </div>
       <div className="md:w-1/2 mt-6 md:mt-0">
-        <img
+        <Image
           src="/assets/blood.png"
           alt="Team members holding donation signs"
           className="w-full h-auto rounded-lg shadow-md"
