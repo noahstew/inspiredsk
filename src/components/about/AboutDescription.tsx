@@ -25,6 +25,8 @@ function AboutDescription() {
           src="/assets/blood.png"
           alt="Team members holding donation signs"
           className="w-full h-auto rounded-lg shadow-md"
+          width={500}
+          height={500}
         />
       </div>
     </div>
