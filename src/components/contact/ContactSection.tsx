@@ -7,7 +7,7 @@ function ContactSection() {
       <div className="max-w-7xl w-full flex flex-col lg:flex-row gap-36">
         {/* Left: Form (2/3) */}
         <div className="w-full lg:w-2/3">
-          <h2 className="text-6xl font-cooper font-bold text-pistachio mb-8">
+          <h2 className="text-6xl font-league-spartan font-bold text-pistachio mb-8">
             Let’s Get In Touch!
           </h2>
           <ContactForm />

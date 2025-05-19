@@ -2,7 +2,7 @@ import ContactInput from '@/components/contact/ContactInput';
 
 function ContactForm() {
   return (
-    <form className="space-y-6 font-cooper">
+    <form className="space-y-6 font-league-spartan">
       <ContactInput placeholder="Name" />
       <ContactInput placeholder="Email" />
 
