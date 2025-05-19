@@ -8,7 +8,7 @@ TODO:
 */
 export const metadata: Metadata = {
   title: 'Home | InspiredSK',
-  description: 'Meet the team behind our project.',
+  description: 'View our resources/announcements.',
 };
 
 export default function RootLayout({

@@ -5,6 +5,13 @@ import AboutDescription from '@/components/about/AboutDescription';
 import RecentInitiatives from '@/components/about/RecentInitiatives';
 import GoalsSection from '@/components/about/GoalsSection';
 
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'About | InspiredSK',
+  description: 'Learn more about InspiredSK and our mission.',
+};
+
 function About() {
   return (
     <section>
