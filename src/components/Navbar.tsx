@@ -5,7 +5,7 @@ function Navbar() {
   return (
     <nav className="w-full bg-cream p-4 flex justify-between items-center gap-4">
       <Link href="/" className="flex items-center ml-4">
-        <Image src="/logo2.png" alt="Logo" width={96} height={96} />
+        <Image src="/logo.png" alt="Logo" width={96} height={96} />
       </Link>
       <ul className="flex space-x-8 text-peach mt-4 mr-4 text-3xl text-right font-league-spartan font-bold">
         <li className="hover:text-persimmon hover:underline">
