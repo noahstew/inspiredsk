@@ -64,16 +64,16 @@ export default function AdminDashboard() {
             See Updates
           </h2>
           <Link
-            href="/blog"
-            className="bg-peach hover:bg-persimmon text-white font-semibold py-3 rounded-lg transition-colors text-center shadow"
-          >
-            View Blog
-          </Link>
-          <Link
             href="/"
             className="bg-peach hover:bg-persimmon text-white font-semibold py-3 rounded-lg transition-colors text-center shadow"
           >
             View Links
+          </Link>
+          <Link
+            href="/blog"
+            className="bg-peach hover:bg-persimmon text-white font-semibold py-3 rounded-lg transition-colors text-center shadow"
+          >
+            View Blog
           </Link>
         </div>
         <div className="border-t border-gray-300 my-6"></div>
