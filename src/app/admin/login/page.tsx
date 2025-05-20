@@ -62,7 +62,7 @@ export default function AdminLogin() {
 
           <button
             onClick={handleLogin}
-            className="w-full bg-pistachio hover:bg-peach text-white font-bold py-2 px-4 rounded-md transition duration-300 ease-in-out"
+            className="w-full bg-pistachio hover:bg-olive text-white font-bold py-2 px-4 rounded-md transition duration-300 ease-in-out"
           >
             Login
           </button>
