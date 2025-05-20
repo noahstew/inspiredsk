@@ -345,7 +345,7 @@ export default function AdminLinks() {
         <div className="flex items-center justify-between mb-8">
           <Link
             href="/admin"
-            className="bg-pistachio hover:bg-peach text-white py-2 px-4 rounded-md transition-colors duration-300 inline-flex items-center"
+            className="bg-pistachio hover:bg-olive text-white py-2 px-4 rounded-md transition-colors duration-300 inline-flex items-center"
           >
             <svg
               className="w-5 h-5 mr-2"
