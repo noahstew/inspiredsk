@@ -124,7 +124,7 @@ function AdminBlog() {
               <div className="bg-white rounded-lg shadow-md p-8 text-center">
                 <p className="text-gray-500 mb-4">No blog posts found.</p>
                 <p className="text-gray-500">
-                  Click "Add New Post" to create your first blog post.
+                  Click &quot;Add New Post&quot; to create your first blog post.
                 </p>
               </div>
             ) : (

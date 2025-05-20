@@ -3,7 +3,6 @@
 import supabase from '@/utils/supabase/supabaseClient';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 
 // Define our Link type based on the database schema
 interface LinkItem {
