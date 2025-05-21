@@ -12,7 +12,7 @@ export default function AdminDashboard() {
   useEffect(() => {
     const isAuth = localStorage.getItem('admin-auth');
     if (isAuth !== 'true') {
-      router.push('/admin/login');
+      router.push('/login');
     } else {
       setIsLoading(false);
     }

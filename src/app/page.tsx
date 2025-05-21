@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <div>
       {/* NavBar & Hero */}
-      <div className="h-screen w-screen bg-blue-500">
+      <div className="">
         <Navbar />
         <Hero />
       </div>
