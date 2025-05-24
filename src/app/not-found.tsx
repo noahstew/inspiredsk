@@ -25,7 +25,7 @@ function NotFound() {
       </p>
       <button className="mt-4 px-4 py-2 bg-persimmon text-white rounded hover:bg-peach transition duration-300">
         <Link href="/" className="text-lg font-bold">
-          Go Back Home
+          Go to Home
         </Link>
       </button>
     </div>
