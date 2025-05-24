@@ -3,16 +3,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import supabase from '@/utils/supabase/supabaseClient';
-
-// Define our BlogPost type based on the expected database schema
-interface BlogPost {
-  id: string;
-  title: string;
-  author: string;
-  published_at: string;
-  created_at: string;
-  updated_at: string;
-}
+import { BlogPost } from '@/components/blog/BlogPostForm';
 
 function AdminBlog() {
   const [posts, setPosts] = useState<BlogPost[]>([]);
@@ -42,8 +33,32 @@ function AdminBlog() {
     fetchPosts();
   }, []);
 
+  // Delete blog post
+  const handleDelete = async (id: string, e: React.MouseEvent) => {
+    e.preventDefault(); // Stop link navigation
+    e.stopPropagation(); // Prevent event bubbling
+
+    if (!window.confirm('Are you sure you want to delete this blog post?')) {
+      return;
+    }
+
+    try {
+      const { error } = await supabase.from('blog_posts').delete().eq('id', id);
+
+      if (error) throw error;
+
+      // Filter out the deleted post from state
+      setPosts(posts.filter((post) => post.id !== id));
+    } catch (err) {
+      console.error('Error deleting post:', err);
+      alert('Failed to delete post. Please try again.');
+    }
+  };
+
   // Format date for display
-  const formatDate = (dateString: string) => {
+  const formatDate = (dateString: string | null) => {
+    if (!dateString) return 'Not published';
+
     return new Date(dateString).toLocaleDateString('en-US', {
       year: 'numeric',
       month: 'short',
@@ -130,10 +145,9 @@ function AdminBlog() {
             ) : (
               <div className="grid grid-cols-1 gap-6">
                 {posts.map((post) => (
-                  <Link
-                    href={`/admin/blog/${post.id}`}
+                  <div
                     key={post.id}
-                    className="block bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
+                    className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
                   >
                     <div className="p-6">
                       <div className="flex justify-between items-start">
@@ -141,7 +155,7 @@ function AdminBlog() {
                           {post.title}
                         </h2>
                         <span className="bg-pistachio/10 text-pistachio text-sm px-3 py-1 rounded-full">
-                          {formatDate(post.published_at)}
+                          Published date: {formatDate(post.published_at)}
                         </span>
                       </div>
 
@@ -157,7 +171,7 @@ function AdminBlog() {
                             clipRule="evenodd"
                           />
                         </svg>
-                        <span>{post.author}</span>
+                        <span>{post.author_name}</span>
 
                         <span className="mx-3">•</span>
 
@@ -173,16 +187,17 @@ function AdminBlog() {
                           />
                         </svg>
                         <span>
-                          Last updated:{' '}
-                          {formatDate(post.updated_at || post.created_at)}
+                          Created: {formatDate(post.created_at ?? null)}
                         </span>
                       </div>
 
-                      <div className="mt-4 flex justify-end">
-                        <span className="text-pistachio hover:text-peach inline-flex items-center">
-                          Edit Post
+                      <div className="mt-4 flex justify-end space-x-4">
+                        <Link
+                          href={`/admin/blog/edit/${post.id}`}
+                          className="text-pistachio hover:text-peach inline-flex items-center"
+                        >
                           <svg
-                            className="w-4 h-4 ml-1"
+                            className="w-5 h-5 mr-1"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -191,13 +206,34 @@ function AdminBlog() {
                               strokeLinecap="round"
                               strokeLinejoin="round"
                               strokeWidth={2}
-                              d="M9 5l7 7-7 7"
+                              d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
                             />
                           </svg>
-                        </span>
+                          Edit
+                        </Link>
+
+                        <button
+                          onClick={(e) => handleDelete(post.id!, e)}
+                          className="text-persimmon hover:text-persimmon/80 inline-flex items-center"
+                        >
+                          <svg
+                            className="w-5 h-5 mr-1"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                            />
+                          </svg>
+                          Delete
+                        </button>
                       </div>
                     </div>
-                  </Link>
+                  </div>
                 ))}
               </div>
             )}
