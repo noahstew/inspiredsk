@@ -458,12 +458,6 @@ export default function AdminLinks() {
                     </th>
                     <th
                       scope="col"
-                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                    >
-                      Created
-                    </th>
-                    <th
-                      scope="col"
                       className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider"
                     >
                       Actions
@@ -565,9 +559,6 @@ export default function AdminLinks() {
                           ) : (
                             <span className="text-gray-400">No image</span>
                           )}
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-gray-500">
-                          {new Date(link.created_at).toLocaleDateString()}
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-right">
                           <button
