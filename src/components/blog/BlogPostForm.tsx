@@ -30,7 +30,7 @@ async function uploadImageToSupabaseLocal(file: File) {
   const fileExt = file.name.split('.').pop()?.toLowerCase() || 'png';
   const filePath = `blog_${timestamp}.${fileExt}`;
 
-  const { data, error } = await supabase.storage
+  const { error } = await supabase.storage
     .from('images')
     .upload(filePath, file);
 
@@ -137,8 +137,10 @@ export default function BlogPostForm({
       } else {
         router.push('/admin/blog');
       }
-    } catch (err: any) {
-      setError(err.message || 'Failed to save blog post');
+    } catch (err: unknown) {
+      const errorMessage =
+        err instanceof Error ? err.message : 'Failed to fetch post';
+      setError(errorMessage);
     } finally {
       setIsSaving(false);
     }

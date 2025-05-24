@@ -25,8 +25,10 @@ export default function EditBlogPost() {
         if (!data) throw new Error('Post not found');
 
         setPost(data);
-      } catch (err: any) {
-        setError(err.message || 'Failed to fetch post');
+      } catch (err: unknown) {
+        const errorMessage =
+          err instanceof Error ? err.message : 'Failed to fetch post';
+        setError(errorMessage);
       } finally {
         setLoading(false);
       }

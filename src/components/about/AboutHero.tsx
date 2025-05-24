@@ -7,7 +7,8 @@ function AboutHero() {
           OUR MISSION
         </h1>
         <h2 className="text-4xl md:text-6xl font-bold text-pistachio font-league-spartan">
-          "Promoting and inspiring growth in our community through education."
+          &quot;Promoting and inspiring growth in our community through
+          education.&quot;
         </h2>
       </div>
       {/* White opacity overlay */}
