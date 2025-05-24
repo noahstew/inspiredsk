@@ -1,4 +1,7 @@
 import type { Metadata } from 'next';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
+import BlogPage from '@/components/blog/BlogPage';
 
 export const metadata: Metadata = {
   title: 'Blog | InspiredSK',
@@ -6,6 +9,12 @@ export const metadata: Metadata = {
 };
 
 function Blog() {
-  return <div>Blog</div>;
+  return (
+    <div>
+      <Navbar />
+      <BlogPage />
+      <Footer />
+    </div>
+  );
 }
 export default Blog;

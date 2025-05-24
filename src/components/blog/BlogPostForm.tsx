@@ -196,7 +196,9 @@ export default function BlogPostForm({
                 className="w-full border rounded px-3 py-2"
               />
               <p className="text-sm text-gray-500 mt-1">
-                When this post should be visible to visitors.
+                This does not schedule the post for publishing. It will be
+                published immediately. This just is used to order the posts by
+                recency.
               </p>
             </div>
           )}
