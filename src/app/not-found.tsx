@@ -21,7 +21,7 @@ function NotFound() {
         404 - Page Not Found
       </h1>
       <p className="text-lg text-peach mb-4">
-        Oops! The page you&apost;re looking for does not exist.
+        Oops! The page you're looking for does not exist.
       </p>
       <button className="mt-4 px-4 py-2 bg-persimmon text-white rounded hover:bg-peach transition duration-300">
         <Link href="/" className="text-lg font-bold">
