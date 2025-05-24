@@ -4,6 +4,7 @@ import { useEffect, useState, useCallback } from 'react';
 import { useParams } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
+import Head from 'next/head'; // Add this import
 import supabase from '@/utils/supabase/supabaseClient';
 import { BlogPost } from '@/components/blog/BlogPostForm';
 import 'react-quill-new/dist/quill.snow.css';
@@ -298,6 +299,13 @@ function ViewBlogPostPage() {
     return new Date(dateString).toLocaleDateString('en-US', options);
   };
 
+  // Update document title dynamically
+  useEffect(() => {
+    if (post?.title) {
+      document.title = `${post.title} | InspirED SK`;
+    }
+  }, [post]);
+
   if (isLoading) {
     return (
       <div className="flex justify-center items-center min-h-screen bg-cream">
@@ -341,198 +349,218 @@ function ViewBlogPostPage() {
   }
 
   return (
-    <div className="min-h-screen bg-cream">
-      {/* Add the style tag with Quill styles */}
-      <style jsx global>
-        {quillStyles}
-      </style>
-
-      {/* Image carousel (if images exist) */}
-      {post.image_urls && post.image_urls.length > 0 && (
-        <div className="relative">
-          {/* Back button positioned on the image area */}
-          <div className="absolute top-4 left-4 z-20">
-            <Link
-              href="/blog"
-              className="inline-flex items-center px-3 py-2 bg-white/90 hover:bg-white text-pistachio hover:text-olive rounded-md transition-all shadow-md"
-            >
-              <svg
-                className="w-5 h-5 mr-1"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M10 19l-7-7m0 0l7-7m-7 7h18"
-                />
-              </svg>
-              Back to Blog
-            </Link>
-          </div>
-
-          {/* Full width carousel with no overlay */}
-          <div className="relative h-[60vh] md:h-[70vh] overflow-hidden">
-            {post.image_urls.map((url, idx) => (
-              <div
-                key={idx}
-                className={`absolute inset-0 transition-opacity duration-1000 ${
-                  idx === currentImageIndex ? 'opacity-100' : 'opacity-0'
-                }`}
-              >
-                <Image
-                  src={url}
-                  alt={`${post.title} - image ${idx + 1}`}
-                  fill
-                  className="object-cover object-center"
-                  priority={idx === 0}
-                  sizes="100vw"
-                />
-              </div>
-            ))}
-          </div>
-
-          {/* Carousel controls (only show if multiple images) */}
-          {post.image_urls.length > 1 && (
-            <>
-              <button
-                onClick={prevImage}
-                className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-charcoal rounded-full p-3 z-10 transition-all hover:scale-110 shadow-md"
-                aria-label="Previous image"
-              >
-                <svg
-                  className="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M15 19l-7-7 7-7"
-                  />
-                </svg>
-              </button>
-              <button
-                onClick={nextImage}
-                className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-charcoal rounded-full p-3 z-10 transition-all hover:scale-110 shadow-md"
-                aria-label="Next image"
-              >
-                <svg
-                  className="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </button>
-
-              {/* Dots indicator */}
-              <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-2 z-10">
-                {post.image_urls.map((_, idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => setCurrentImageIndex(idx)}
-                    className={`h-3 w-3 rounded-full transition-colors shadow-md ${
-                      idx === currentImageIndex
-                        ? 'bg-white scale-125'
-                        : 'bg-white/70 hover:bg-white'
-                    }`}
-                    aria-label={`Go to image ${idx + 1}`}
-                  ></button>
-                ))}
-              </div>
-            </>
-          )}
-        </div>
+    <>
+      {/* Use Next.js Head for dynamic head elements */}
+      {post && (
+        <Head>
+          <title>{post.title} | InspirED SK</title>
+          <meta
+            name="description"
+            content={
+              post.content
+                ? post.content.substring(0, 150).replace(/<[^>]*>/g, '')
+                : 'Read our latest blog post.'
+            }
+          />
+          <meta property="og:title" content={`${post.title} | InspirED SK`} />
+        </Head>
       )}
 
-      {/* Content section - Full width with max-width constraints */}
-      <div className="px-4 sm:px-8 md:px-16 lg:px-28 xl:px-44 py-16">
-        {/* Title and meta info */}
-        <div className="mb-12">
-          <h1 className="text-5xl text-5xl font-bold text-pistachio font-league-spartan mb-6">
-            {post.title}
-          </h1>
+      <div className="min-h-screen bg-cream">
+        {/* Add the style tag with Quill styles */}
+        <style jsx global>
+          {quillStyles}
+        </style>
 
-          <div className="flex flex-wrap items-center text-gray-600">
-            <span className="flex items-center">
-              <svg
-                className="w-5 h-5 mr-2"
-                fill="currentColor"
-                viewBox="0 0 20 20"
+        {/* Image carousel (if images exist) */}
+        {post.image_urls && post.image_urls.length > 0 && (
+          <div className="relative">
+            {/* Back button positioned on the image area */}
+            <div className="absolute top-4 left-4 z-20">
+              <Link
+                href="/blog"
+                className="inline-flex items-center px-3 py-2 bg-white/90 hover:bg-white text-pistachio hover:text-olive rounded-md transition-all shadow-md"
               >
-                <path
-                  fillRule="evenodd"
-                  d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                  clipRule="evenodd"
-                />
-              </svg>
-              {post.author_name}
-            </span>
+                <svg
+                  className="w-5 h-5 mr-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M10 19l-7-7m0 0l7-7m-7 7h18"
+                  />
+                </svg>
+                Back to Blog
+              </Link>
+            </div>
 
-            <span className="mx-3">•</span>
+            {/* Full width carousel with no overlay */}
+            <div className="relative h-[60vh] md:h-[70vh] overflow-hidden">
+              {post.image_urls.map((url, idx) => (
+                <div
+                  key={idx}
+                  className={`absolute inset-0 transition-opacity duration-1000 ${
+                    idx === currentImageIndex ? 'opacity-100' : 'opacity-0'
+                  }`}
+                >
+                  <Image
+                    src={url}
+                    alt={`${post.title} - image ${idx + 1}`}
+                    fill
+                    className="object-cover object-center"
+                    priority={idx === 0}
+                    sizes="100vw"
+                  />
+                </div>
+              ))}
+            </div>
 
-            <span className="flex items-center">
-              <svg
-                className="w-5 h-5 mr-2"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
-                  clipRule="evenodd"
-                />
-              </svg>
-              {formatDate(post.published_at)}
-            </span>
-          </div>
-        </div>
+            {/* Carousel controls (only show if multiple images) */}
+            {post.image_urls.length > 1 && (
+              <>
+                <button
+                  onClick={prevImage}
+                  className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-charcoal rounded-full p-3 z-10 transition-all hover:scale-110 shadow-md"
+                  aria-label="Previous image"
+                >
+                  <svg
+                    className="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M15 19l-7-7 7-7"
+                    />
+                  </svg>
+                </button>
+                <button
+                  onClick={nextImage}
+                  className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-charcoal rounded-full p-3 z-10 transition-all hover:scale-110 shadow-md"
+                  aria-label="Next image"
+                >
+                  <svg
+                    className="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </button>
 
-        {/* Only show back button here if no images */}
-        {(!post.image_urls || post.image_urls.length === 0) && (
-          <div className="mb-8">
-            <Link
-              href="/blog"
-              className="inline-flex items-center px-4 py-2 bg-pistachio text-white rounded-md hover:bg-olive transition-colors"
-            >
-              <svg
-                className="w-5 h-5 mr-2"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M10 19l-7-7m0 0l7-7m-7 7h18"
-                />
-              </svg>
-              Back to Blog
-            </Link>
+                {/* Dots indicator */}
+                <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-2 z-10">
+                  {post.image_urls.map((_, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setCurrentImageIndex(idx)}
+                      className={`h-3 w-3 rounded-full transition-colors shadow-md ${
+                        idx === currentImageIndex
+                          ? 'bg-white scale-125'
+                          : 'bg-white/70 hover:bg-white'
+                      }`}
+                      aria-label={`Go to image ${idx + 1}`}
+                    ></button>
+                  ))}
+                </div>
+              </>
+            )}
           </div>
         )}
-        <div className="h-2 w-full bg-peach mb-4 rounded-2xl"></div>
 
-        {/* Post content - styled for Quill without container */}
-        <div className="ql-editor blog-content">
-          <div
-            dangerouslySetInnerHTML={{ __html: processQuillHtml(post.content) }}
-          />
+        {/* Content section - Full width with max-width constraints */}
+        <div className="px-4 sm:px-8 md:px-16 lg:px-28 xl:px-44 py-16">
+          {/* Title and meta info */}
+          <div className="mb-12">
+            <h1 className="text-5xl text-5xl font-bold text-pistachio font-league-spartan mb-6">
+              {post.title}
+            </h1>
+
+            <div className="flex flex-wrap items-center text-gray-600">
+              <span className="flex items-center">
+                <svg
+                  className="w-5 h-5 mr-2"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+                {post.author_name}
+              </span>
+
+              <span className="mx-3">•</span>
+
+              <span className="flex items-center">
+                <svg
+                  className="w-5 h-5 mr-2"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+                {formatDate(post.published_at)}
+              </span>
+            </div>
+          </div>
+
+          {/* Only show back button here if no images */}
+          {(!post.image_urls || post.image_urls.length === 0) && (
+            <div className="mb-8">
+              <Link
+                href="/blog"
+                className="inline-flex items-center px-4 py-2 bg-pistachio text-white rounded-md hover:bg-olive transition-colors"
+              >
+                <svg
+                  className="w-5 h-5 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M10 19l-7-7m0 0l7-7m-7 7h18"
+                  />
+                </svg>
+                Back to Blog
+              </Link>
+            </div>
+          )}
+          <div className="h-2 w-full bg-peach mb-4 rounded-2xl"></div>
+
+          {/* Post content - styled for Quill without container */}
+          <div className="ql-editor blog-content">
+            <div
+              dangerouslySetInnerHTML={{
+                __html: processQuillHtml(post.content),
+              }}
+            />
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

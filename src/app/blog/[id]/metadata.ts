@@ -22,7 +22,7 @@ export async function generateMetadata({
     }
 
     return {
-      title: `${post.title} | InspirED SK Blog`,
+      title: `${post.title} | InspirED`,
       description: post.content
         ? post.content.substring(0, 150).replace(/<[^>]*>/g, '')
         : 'Read our latest blog post.',
