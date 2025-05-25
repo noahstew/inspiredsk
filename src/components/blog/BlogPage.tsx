@@ -56,9 +56,13 @@ function BlogPage() {
   // Function to truncate text for previews
   const truncateText = (text: string, maxLength: number = 150) => {
     if (!text) return '';
-    // Strip HTML tags for preview
-    const strippedText = text.replace(/<[^>]*>/g, '');
-
+    // Add a period and space after headings, paragraphs, and list items
+    let processedText = text
+      .replace(/<\/h[1-6]>/gi, '. ')
+      .replace(/<\/p>/gi, '. ')
+      .replace(/<\/li>/gi, '. ');
+    // Strip all HTML tags
+    const strippedText = processedText.replace(/<[^>]*>/g, '');
     if (strippedText.length <= maxLength) return strippedText;
     return `${strippedText.substring(0, maxLength)}...`;
   };
@@ -80,15 +84,15 @@ function BlogPage() {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 h-screen">
-      <h1 className="text-4xl md:text-5xl font-bold text-pistachio font-league-spartan mb-8 text-center">
-        Blog
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 h-screen font-league-spartan">
+      <h1 className="text-4xl md:text-5xl font-bold text-olive font-league-spartan mb-8 text-center">
+        Our Blog
       </h1>
-      <p className="text-lg text-gray-600 mb-8 text-center">
+      <p className="text-lg text-pistachio mb-8 text-center">
         Read about our latest news, events, and updates from the InspirED team
         here!
       </p>
-      <div className="h-2 w-full bg-peach mt-8 mb-16 rounded-2xl"></div>
+      <div className="h-2 w-full bg-persimmon mt-8 mb-16 rounded-2xl"></div>
 
       {posts.length === 0 ? (
         <div className="text-center py-12">

@@ -243,7 +243,7 @@ export default function BlogPostForm({
             accept="image/*"
             multiple
             onChange={handleImageChange}
-            className="w-full"
+            className="border rounded px-3 py-2"
           />
           {images.length > 0 && (
             <div className="flex gap-2 mt-2">
