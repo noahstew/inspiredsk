@@ -18,7 +18,8 @@ function TeamPage() {
   return (
     <div className="flex flex-col min-h-screen w-full bg-cream py-8">
       <div className="max-w-6xl w-full mx-auto px-4 flex-1 flex flex-col">
-        <div className="flex justify-end mb-8">
+        <div className="flex items-center justify-between mb-8">
+          <h2 className="text-4xl font-bold text-olive">Our Team</h2>
           <select
             value={selectedType}
             onChange={(e) => setSelectedType(e.target.value)}
