@@ -57,7 +57,7 @@ function BlogPage() {
   const truncateText = (text: string, maxLength: number = 150) => {
     if (!text) return '';
     // Add a period and space after headings, paragraphs, and list items
-    let processedText = text
+    const processedText = text
       .replace(/<\/h[1-6]>/gi, '. ')
       .replace(/<\/p>/gi, '. ')
       .replace(/<\/li>/gi, '. ');
