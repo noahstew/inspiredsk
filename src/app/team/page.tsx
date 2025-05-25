@@ -1,3 +1,6 @@
+import Footer from '@/components/Footer';
+import Navbar from '@/components/Navbar';
+import TeamPage from '@/components/team/TeamPage';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -6,6 +9,12 @@ export const metadata: Metadata = {
 };
 
 function Team() {
-  return <div>Team</div>;
+  return (
+    <>
+      <Navbar />
+      <TeamPage />
+      <Footer />
+    </>
+  );
 }
 export default Team;

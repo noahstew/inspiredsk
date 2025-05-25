@@ -216,33 +216,6 @@ function HomePage() {
             </p>
           )}
         </section>
-
-        {/* Social Media section */}
-        <section className="mb-12">
-          {/* Contact us Call to action */}
-          <div className="mt-8 text-center">
-            <Link
-              href="/contact"
-              className="inline-flex items-center px-6 py-3 bg-pistachio hover:bg-olive text-white font-medium rounded-md transition-colors"
-            >
-              <svg
-                className="w-5 h-5 mr-2"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                />
-              </svg>
-              Contact Us
-            </Link>
-          </div>
-        </section>
       </div>
     </div>
   );

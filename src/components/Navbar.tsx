@@ -81,9 +81,9 @@ function Navbar() {
         <li className="hover:text-persimmon hover:underline">
           <Link href="/about">About</Link>
         </li>
-        {/* <li className="hover:text-persimmon hover:underline">
+        <li className="hover:text-persimmon hover:underline">
           <Link href="/team">Team</Link>
-        </li> */}
+        </li>
         <li className="hover:text-persimmon hover:underline">
           <Link href="/blog">Blog</Link>
         </li>
