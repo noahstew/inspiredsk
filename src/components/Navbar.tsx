@@ -36,8 +36,14 @@ function Navbar() {
 
   return (
     <nav className="w-full bg-cream p-4 flex justify-between items-center font-league-spartan">
-      <Link href="/" className="flex items-center ml-4 z-20">
-        <Image src="/logo.png" alt="Logo" width={96} height={96} />
+      <Link href="/" className="flex items-center ml-4 z-20 group">
+        <Image
+          src="/logo.png"
+          alt="Logo"
+          width={96}
+          height={96}
+          className="transition-transform duration-200 group-hover:scale-110"
+        />
       </Link>
 
       {/* Hamburger button */}
@@ -78,17 +84,41 @@ function Navbar() {
 
       {/* Desktop menu */}
       <ul className="hidden md:flex space-x-8 text-peach mr-4 text-2xl font-league-spartan font-bold">
-        <li className="hover:text-persimmon hover:underline">
-          <Link href="/about">About</Link>
+        <li className="group relative">
+          <Link
+            href="/about"
+            className="hover:text-persimmon transition-colors duration-200"
+          >
+            About
+            <span className="pointer-events-none absolute left-1/2 bottom-0 w-0 group-hover:w-full h-[2px] bg-persimmon transition-all duration-300 ease-in-out -translate-x-1/2 origin-center"></span>
+          </Link>
         </li>
-        <li className="hover:text-persimmon hover:underline">
-          <Link href="/team">Team</Link>
+        <li className="group relative">
+          <Link
+            href="/team"
+            className="hover:text-persimmon transition-colors duration-200"
+          >
+            Team
+            <span className="pointer-events-none absolute left-1/2 bottom-0 w-0 group-hover:w-full h-[2px] bg-persimmon transition-all duration-300 ease-in-out -translate-x-1/2 origin-center"></span>
+          </Link>
         </li>
-        <li className="hover:text-persimmon hover:underline">
-          <Link href="/blog">Blog</Link>
+        <li className="group relative">
+          <Link
+            href="/blog"
+            className="hover:text-persimmon transition-colors duration-200"
+          >
+            Blog
+            <span className="pointer-events-none absolute left-1/2 bottom-0 w-0 group-hover:w-full h-[2px] bg-persimmon transition-all duration-300 ease-in-out -translate-x-1/2 origin-center"></span>
+          </Link>
         </li>
-        <li className="hover:text-persimmon hover:underline">
-          <Link href="/contact">Contact</Link>
+        <li className="group relative">
+          <Link
+            href="/contact"
+            className="hover:text-persimmon transition-colors duration-200"
+          >
+            Contact
+            <span className="pointer-events-none absolute left-1/2 bottom-0 w-0 group-hover:w-full h-[2px] bg-persimmon transition-all duration-300 ease-in-out -translate-x-1/2 origin-center"></span>
+          </Link>
         </li>
       </ul>
 
@@ -107,30 +137,54 @@ function Navbar() {
         </button>
         {/* Mobile menu items */}
         <ul className="flex flex-col items-end space-y-8 text-peach text-4xl font-league-spartan font-bold mt-24">
-          <li className="hover:text-persimmon hover:underline">
-            <Link href="/about" onClick={toggleMenu}>
+          <li className="group relative">
+            <Link
+              href="/about"
+              onClick={toggleMenu}
+              className="hover:text-persimmon transition-colors duration-200"
+            >
               About
+              <span className="pointer-events-none absolute left-1/2 bottom-0 w-0 group-hover:w-full h-[2px] bg-persimmon transition-all duration-300 ease-in-out -translate-x-1/2 origin-center"></span>
             </Link>
           </li>
-          {/* <li className="hover:text-persimmon hover:underline">
-            <Link href="/team" onClick={toggleMenu}>Team</Link>
+          {/* <li className="group relative">
+            <Link href="/team" onClick={toggleMenu} className="hover:text-persimmon transition-colors duration-200">
+              Team
+              <span className="pointer-events-none absolute left-1/2 bottom-0 w-0 group-hover:w-full h-[2px] bg-persimmon transition-all duration-300 ease-in-out -translate-x-1/2 origin-center"></span>
+            </Link>
           </li> */}
-          <li className="hover:text-persimmon hover:underline">
-            <Link href="/blog" onClick={toggleMenu}>
+          <li className="group relative">
+            <Link
+              href="/blog"
+              onClick={toggleMenu}
+              className="hover:text-persimmon transition-colors duration-200"
+            >
               Blog
+              <span className="pointer-events-none absolute left-1/2 bottom-0 w-0 group-hover:w-full h-[2px] bg-persimmon transition-all duration-300 ease-in-out -translate-x-1/2 origin-center"></span>
             </Link>
           </li>
-          <li className="hover:text-persimmon hover:underline">
-            <Link href="/contact" onClick={toggleMenu}>
+          <li className="group relative">
+            <Link
+              href="/contact"
+              onClick={toggleMenu}
+              className="hover:text-persimmon transition-colors duration-200"
+            >
               Contact
+              <span className="pointer-events-none absolute left-1/2 bottom-0 w-0 group-hover:w-full h-[2px] bg-persimmon transition-all duration-300 ease-in-out -translate-x-1/2 origin-center"></span>
             </Link>
           </li>
         </ul>
         {/* Logo at the top of mobile menu */}
         <div className="self-end mb-10">
-          <Link href="/" className="flex items-center ml-4 z-20">
-            <Image src="/logo.png" alt="Logo" width={164} height={164} />
-          </Link>{' '}
+          <Link href="/" className="flex items-center ml-4 z-20 group">
+            <Image
+              src="/logo.png"
+              alt="Logo"
+              width={164}
+              height={164}
+              className="transition-transform duration-200 group-hover:scale-110"
+            />
+          </Link>
         </div>
       </div>
     </nav>
