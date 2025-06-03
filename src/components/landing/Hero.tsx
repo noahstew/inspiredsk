@@ -12,7 +12,7 @@ export default function Hero() {
             <span className="text-olive font-league-spartan font-bold text-6xl md:text-7xl lg:text-8xl">
               WE ARE
             </span>
-            <span className="text-peach font-league-spartan font-bold text-7xl md:text-8xl lg:text-9xl -mt-2 md:-mt-3 lg:-mt-4">
+            <span className="text-persimmon font-league-spartan font-bold text-7xl md:text-8xl lg:text-9xl -mt-2 md:-mt-3 lg:-mt-4">
               INSPIRED
             </span>
           </div>

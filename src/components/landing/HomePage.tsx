@@ -97,7 +97,7 @@ function HomePage() {
 
         {/* Links and Resources section */}
         <section className="mb-16">
-          <h2 className="text-3xl font-league-spartan font-bold text-peach mb-8 text-center">
+          <h2 className="text-3xl font-league-spartan font-bold text-persimmon mb-8 text-center">
             Check out our resources and links below.
           </h2>
 
@@ -134,7 +134,7 @@ function HomePage() {
 
         {/* Latest Blog Post Section */}
         <section className="mb-16">
-          <h2 className="text-3xl font-league-spartan font-bold text-peach mb-8 text-center">
+          <h2 className="text-3xl font-league-spartan font-bold text-persimmon mb-8 text-center">
             Latest from our Blog
           </h2>
 

@@ -3,34 +3,31 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { TeamMember } from '@/utils/local-data-types';
+import { DIRECTORS, INTERNAL, EXTERNAL, MARKETING } from '@/data/team';
+
+const teamMap: Record<string, TeamMember[]> = {
+  Directors: DIRECTORS,
+  Internal: INTERNAL,
+  External: EXTERNAL,
+  Marketing: MARKETING,
+};
 
 type MemberCardProps = {
   teamMember: TeamMember;
 };
 
 function MemberCard({ teamMember }: MemberCardProps) {
-  const [flipped, setFlipped] = useState(false);
-
-  const handleFlip = () => setFlipped((prev) => !prev);
-
   return (
     <div
-      className={`member-card relative w-[260px] h-[340px] mx-auto rounded-2xl bg-transparent transition-shadow duration-200 cursor-pointer perspective-1000
-        ${flipped ? '' : 'shadow-lg'}
-      `}
+      className={`member-card relative w-[260px] h-[325px] mx-auto rounded-2xl`}
       style={{
         marginBottom: '0px',
       }}
-      onClick={handleFlip}
     >
-      <div
-        className={`card-inner absolute w-full h-full transition-transform duration-500 [transform-style:preserve-3d] ${
-          flipped ? 'rotate-y-180' : ''
-        }`}
-      >
+      <div className={`card-inner absolute w-full h-full`}>
         {/* Front */}
         <div className="card-front absolute w-full h-full bg-white rounded-2xl shadow-md flex flex-col items-stretch overflow-hidden [backface-visibility:hidden]">
-          <div className="w-full h-[180px] bg-gradient-to-b from-peach-200 to-white rounded-t-2xl overflow-hidden relative flex-shrink-0">
+          <div className="w-full h-[200px] min-h-[200px] bg-gradient-to-b from-peach-200 to-white rounded-t-2xl overflow-hidden relative flex-shrink-0 img-small">
             <Image
               src={teamMember.image || '/logo.png'}
               alt={teamMember.name}
@@ -42,23 +39,16 @@ function MemberCard({ teamMember }: MemberCardProps) {
               }}
             />
           </div>
-          <div className="flex flex-col flex-1 justify-start items-center px-4 pt-5 bg-white rounded-b-2xl text-center">
-            <h3 className="text-xl font-bold text-persimmon mb-1">
+          {/* this div here */}
+          <div className="flex flex-col  justify-start items-center p-2 bg-white rounded-b-2xl text-center">
+            <h3 className="text-xl font-bold text-persimmon ">
               {teamMember.name}
             </h3>
-            <p className="text-base font-medium text-pistachio">
+            <span className="text-pistachio">{teamMember.pronouns}</span>
+            <p className="text-base font-medium text-olive ">
               {teamMember.role}
             </p>
           </div>
-        </div>
-        {/* Back */}
-        <div className="card-back absolute w-full h-full bg-gradient-to-b from-[#fff7f0] to-peach-200 rounded-2xl flex flex-col items-center justify-center px-8 py-8 text-center [backface-visibility:hidden] [transform:rotateY(180deg)]">
-          <h4 className="text-lg font-bold text-olive mb-4">
-            {teamMember.name}
-          </h4>
-          <p className="text-base text-pistachio leading-relaxed">
-            {teamMember.bio}
-          </p>
         </div>
       </div>
       <style jsx global>{`
@@ -79,10 +69,13 @@ function MemberCard({ teamMember }: MemberCardProps) {
         @media (max-width: 600px) {
           .member-card {
             width: 90vw !important;
-            height: 340px !important;
+            height: 350px !important;
             margin-left: auto !important;
             margin-right: auto !important;
             margin-bottom: 0 !important;
+          }
+          .img-small {
+            height: 250px !important;
           }
         }
       `}</style>

@@ -1,16 +1,19 @@
 'use client';
 
 import { useState } from 'react';
-import { coreTeam, marketingTeam } from '@/data/team';
+import { DIRECTORS, INTERNAL, EXTERNAL, MARKETING } from '@/data/team';
+import { TeamMember } from '@/utils/local-data-types';
 import { teamTypes } from '@/utils/local-data-types';
 import MemberCard from './MemberCard';
 
 function TeamPage() {
   const [selectedType, setSelectedType] = useState(teamTypes[0]);
 
-  const teamMap: Record<string, typeof coreTeam> = {
-    'Core Team': coreTeam,
-    'Marketing Team': marketingTeam,
+  const teamMap: Record<string, TeamMember[]> = {
+    Directors: DIRECTORS,
+    Internal: INTERNAL,
+    External: EXTERNAL,
+    Marketing: MARKETING,
   };
 
   const currentTeam = teamMap[selectedType] || [];
