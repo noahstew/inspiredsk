@@ -1,16 +1,16 @@
 'use client';
 
-import { useState } from 'react';
+// import { useState } from 'react';
 import Image from 'next/image';
 import { TeamMember } from '@/utils/local-data-types';
-import { DIRECTORS, INTERNAL, EXTERNAL, MARKETING } from '@/data/team';
+// import { DIRECTORS, INTERNAL, EXTERNAL, MARKETING } from '@/data/team';
 
-const teamMap: Record<string, TeamMember[]> = {
-  Directors: DIRECTORS,
-  Internal: INTERNAL,
-  External: EXTERNAL,
-  Marketing: MARKETING,
-};
+// const teamMap: Record<string, TeamMember[]> = {
+//   Directors: DIRECTORS,
+//   Internal: INTERNAL,
+//   External: EXTERNAL,
+//   Marketing: MARKETING,
+// };
 
 type MemberCardProps = {
   teamMember: TeamMember;
