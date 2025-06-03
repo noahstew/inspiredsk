@@ -1,14 +1,12 @@
 import type { Metadata } from 'next';
 import './globals.css';
 
-/*
-TODO: 
-- Add a favicon
-- Add SEO
-*/
 export const metadata: Metadata = {
   title: 'Home | InspiredSK',
   description: 'View our resources/announcements.',
+  icons: {
+    icon: '/favicon.jpg',
+  },
 };
 
 export default function RootLayout({
