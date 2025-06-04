@@ -10,9 +10,11 @@ export const metadata: Metadata = {
 
 function Blog() {
   return (
-    <div>
+    <div className="flex flex-col min-h-screen">
       <Navbar />
-      <BlogPage />
+      <main className="flex-1">
+        <BlogPage />
+      </main>
       <Footer />
     </div>
   );

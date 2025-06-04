@@ -84,7 +84,7 @@ function BlogPage() {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 h-screen font-league-spartan">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 font-league-spartan">
       <h1 className="text-4xl md:text-5xl font-bold text-olive font-league-spartan mb-8 text-center">
         Our Blog
       </h1>
