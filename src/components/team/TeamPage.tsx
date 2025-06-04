@@ -35,9 +35,9 @@ function TeamPage() {
             ))}
           </select>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 w-full flex-1">
-          {currentTeam.map((member) => (
-            <MemberCard key={member.id} teamMember={member} />
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 w-full flex-1 mb-8">
+          {currentTeam.map((member, idx) => (
+            <MemberCard key={member.id} teamMember={member} index={idx} />
           ))}
         </div>
       </div>

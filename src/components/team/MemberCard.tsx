@@ -14,14 +14,17 @@ import { TeamMember } from '@/utils/local-data-types';
 
 type MemberCardProps = {
   teamMember: TeamMember;
+  index: number;
 };
 
-function MemberCard({ teamMember }: MemberCardProps) {
+function MemberCard({ teamMember, index }: MemberCardProps) {
   return (
     <div
-      className={`member-card relative w-[260px] h-[325px] mx-auto rounded-2xl`}
+      className={`member-card relative w-[260px] h-[325px] mx-auto rounded-2xl opacity-0 translate-y-8 animate-fade-in-up`}
       style={{
         marginBottom: '0px',
+        animationDelay: `${index * 120}ms`,
+        animationFillMode: 'forwards',
       }}
     >
       <div className={`card-inner absolute w-full h-full`}>
@@ -52,6 +55,15 @@ function MemberCard({ teamMember }: MemberCardProps) {
         </div>
       </div>
       <style jsx global>{`
+        @keyframes fade-in-up {
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        .animate-fade-in-up {
+          animation: fade-in-up 0.7s cubic-bezier(0.4, 0, 0.2, 1) both;
+        }
         .perspective-1000 {
           perspective: 1000px;
         }

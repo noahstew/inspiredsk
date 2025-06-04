@@ -102,8 +102,18 @@ function BlogPage() {
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {posts.map((post) => (
-            <Link href={`/blog/${post.id}`} key={post.id} className="group">
+          {posts.map((post, idx) => (
+            <Link
+              href={`/blog/${post.id}`}
+              key={post.id}
+              className="group"
+              style={{
+                opacity: 0,
+                transform: 'translateY(24px)',
+                animation: `fade-in-up 0.7s cubic-bezier(0.4,0,0.2,1) forwards`,
+                animationDelay: `${idx * 120}ms`,
+              }}
+            >
               <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 h-full flex flex-col">
                 {/* Featured Image */}
                 <div className="relative h-48 overflow-hidden">
@@ -147,7 +157,7 @@ function BlogPage() {
                   </div>
 
                   <div className="mt-auto">
-                    <span className="inline-flex items-center text-pistachio font-semibold group-hover:text-peach transition-colors">
+                    <span className="inline-flex items-center text-pistachio font-semibold group-hover:text-olive transition-colors">
                       Read more
                       <svg
                         className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1"
@@ -170,6 +180,14 @@ function BlogPage() {
           ))}
         </div>
       )}
+      <style jsx global>{`
+        @keyframes fade-in-up {
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
     </div>
   );
 }
