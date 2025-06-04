@@ -3,7 +3,7 @@ import { TeamMember } from '@/utils/local-data-types';
 export const DIRECTORS: TeamMember[] = [
   {
     id: 1,
-    name: 'Vishall Patel',
+    name: 'Vishall Agasthian',
     role: 'Founder & Director of Internal Affairs',
     image: '/assets/team/Vishall.jpg',
     pronouns: 'he/him',
