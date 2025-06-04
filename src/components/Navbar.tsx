@@ -147,12 +147,16 @@ function Navbar() {
               <span className="pointer-events-none absolute left-1/2 bottom-0 w-0 group-hover:w-full h-[2px] bg-persimmon transition-all duration-300 ease-in-out -translate-x-1/2 origin-center"></span>
             </Link>
           </li>
-          {/* <li className="group relative">
-            <Link href="/team" onClick={toggleMenu} className="hover:text-persimmon transition-colors duration-200">
+          <li className="group relative">
+            <Link
+              href="/team"
+              onClick={toggleMenu}
+              className="hover:text-persimmon transition-colors duration-200"
+            >
               Team
               <span className="pointer-events-none absolute left-1/2 bottom-0 w-0 group-hover:w-full h-[2px] bg-persimmon transition-all duration-300 ease-in-out -translate-x-1/2 origin-center"></span>
             </Link>
-          </li> */}
+          </li>
           <li className="group relative">
             <Link
               href="/blog"
