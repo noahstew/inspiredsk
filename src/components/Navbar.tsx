@@ -1,3 +1,4 @@
+// Navbar used throughout the application
 'use client';
 
 import { useState, useEffect } from 'react';
