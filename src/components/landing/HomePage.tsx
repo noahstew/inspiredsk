@@ -1,8 +1,8 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import Image from 'next/image'; // Added for thumbnail display
+import Image from 'next/image';
 import supabase from '@/utils/supabase/supabaseClient';
 import LinkCard from './LinkCard';
 import Hero from './Hero';
@@ -15,7 +15,6 @@ interface LinkItem {
   sort_order: number;
 }
 
-// Add interface for blog posts
 interface BlogPost {
   id: string;
   title: string;
@@ -31,12 +30,17 @@ function HomePage() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  // Refs and state for fade-in on scroll
+  const linksSectionRef = useRef<HTMLDivElement>(null);
+  const blogSectionRef = useRef<HTMLDivElement>(null);
+  const [linksVisible, setLinksVisible] = useState(false);
+  const [blogVisible, setBlogVisible] = useState(false);
+
   useEffect(() => {
     async function fetchData() {
       try {
         setIsLoading(true);
 
-        // Fetch links
         const { data: linksData, error: linksError } = await supabase
           .from('links')
           .select('*')
@@ -44,18 +48,16 @@ function HomePage() {
 
         if (linksError) throw linksError;
 
-        // Fetch latest blog post
         const { data: blogData, error: blogError } = await supabase
           .from('blog_posts')
           .select('*')
-          .not('published_at', 'is', null) // Only published posts
-          .lte('published_at', new Date().toISOString()) // Only posts published now or in past
-          .order('published_at', { ascending: false }) // Newest first
-          .limit(1); // Just get the latest one
+          .not('published_at', 'is', null)
+          .lte('published_at', new Date().toISOString())
+          .order('published_at', { ascending: false })
+          .limit(1);
 
         if (blogError) throw blogError;
 
-        // Update state
         setLinks(linksData || []);
         setLatestPost(blogData && blogData.length > 0 ? blogData[0] : null);
       } catch (err) {
@@ -69,7 +71,25 @@ function HomePage() {
     fetchData();
   }, []);
 
-  // Format date for display
+  // Fade-in on scroll logic
+  useEffect(() => {
+    const observerLinks = new IntersectionObserver(
+      ([entry]) => setLinksVisible(entry.isIntersecting),
+      { threshold: 0.2 }
+    );
+    const observerBlog = new IntersectionObserver(
+      ([entry]) => setBlogVisible(entry.isIntersecting),
+      { threshold: 0.2 }
+    );
+    if (linksSectionRef.current) observerLinks.observe(linksSectionRef.current);
+    if (blogSectionRef.current) observerBlog.observe(blogSectionRef.current);
+
+    return () => {
+      observerLinks.disconnect();
+      observerBlog.disconnect();
+    };
+  }, []);
+
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('en-US', {
       year: 'numeric',
@@ -78,10 +98,8 @@ function HomePage() {
     });
   };
 
-  // Truncate text function for blog preview
   const truncateText = (text: string, maxLength: number = 150) => {
     if (!text) return '';
-    // Strip HTML tags for preview
     const strippedText = text.replace(/<[^>]*>/g, '');
     if (strippedText.length <= maxLength) return strippedText;
     return `${strippedText.substring(0, maxLength)}...`;
@@ -96,7 +114,15 @@ function HomePage() {
         </section>
 
         {/* Links and Resources section */}
-        <section className="mb-16">
+        <section
+          ref={linksSectionRef}
+          className="mb-16"
+          style={{
+            opacity: linksVisible ? 1 : 0,
+            transform: linksVisible ? 'translateY(0)' : 'translateY(24px)',
+            transition: 'opacity 1s ease-out 0.2s, transform 1s ease-out 0.2s',
+          }}
+        >
           <h2 className="text-3xl font-league-spartan font-bold text-persimmon mb-8 text-center">
             Check out our resources and links below.
           </h2>
@@ -133,7 +159,15 @@ function HomePage() {
         </section>
 
         {/* Latest Blog Post Section */}
-        <section className="mb-16">
+        <section
+          ref={blogSectionRef}
+          className="mb-16"
+          style={{
+            opacity: blogVisible ? 1 : 0,
+            transform: blogVisible ? 'translateY(0)' : 'translateY(24px)',
+            transition: 'opacity 1s ease-out 0.4s, transform 1s ease-out 0.4s',
+          }}
+        >
           <h2 className="text-3xl font-league-spartan font-bold text-persimmon mb-8 text-center">
             Latest from our Blog
           </h2>

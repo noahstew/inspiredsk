@@ -1,8 +1,35 @@
 'use client';
 
 import Image from 'next/image';
+import { useRef, useEffect, useState } from 'react';
 
 export default function Hero() {
+  // Refs for each paragraph
+  const p1Ref = useRef<HTMLParagraphElement>(null);
+  const p2Ref = useRef<HTMLParagraphElement>(null);
+
+  // State to track visibility
+  const [p1Visible, setP1Visible] = useState(false);
+  const [p2Visible, setP2Visible] = useState(false);
+
+  useEffect(() => {
+    const observer1 = new IntersectionObserver(
+      ([entry]) => setP1Visible(entry.isIntersecting),
+      { threshold: 0.2 }
+    );
+    const observer2 = new IntersectionObserver(
+      ([entry]) => setP2Visible(entry.isIntersecting),
+      { threshold: 0.2 }
+    );
+    if (p1Ref.current) observer1.observe(p1Ref.current);
+    if (p2Ref.current) observer2.observe(p2Ref.current);
+
+    return () => {
+      observer1.disconnect();
+      observer2.disconnect();
+    };
+  }, []);
+
   return (
     <>
       <section className="relative w-full overflow-hidden">
@@ -45,12 +72,28 @@ export default function Hero() {
         </div>
       </section>
       <section className="text-olive">
-        <p className="text-center text-xl lg:text-2xl font-league-spartan mb-8">
+        <p
+          ref={p1Ref}
+          className="text-center text-xl lg:text-2xl font-league-spartan mb-8"
+          style={{
+            opacity: p1Visible ? 1 : 0,
+            transform: p1Visible ? 'translateY(0)' : 'translateY(24px)',
+            transition: 'opacity 1s ease-out 0.2s, transform 1s ease-out 0.2s',
+          }}
+        >
           We are a diverse group of students at the University of Regina
           committed to creating <b>positive change</b> across our community and
           Saskatchewan through <b>monthly initiatives</b>.
         </p>
-        <p className="text-center text-xl lg:text-2xl font-league-spartan mb-8">
+        <p
+          ref={p2Ref}
+          className="text-center text-xl lg:text-2xl font-league-spartan mb-8"
+          style={{
+            opacity: p2Visible ? 1 : 0,
+            transform: p2Visible ? 'translateY(0)' : 'translateY(24px)',
+            transition: 'opacity 1s ease-out 0.5s, transform 1s ease-out 0.5s',
+          }}
+        >
           By promoting <b>practical education</b> and{' '}
           <b>community engagement</b>, we equip individuals with the knowledge
           and tools to <b>inspire meaningful impact.</b> Our goal is to foster
