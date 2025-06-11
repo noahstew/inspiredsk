@@ -70,9 +70,9 @@ export const INTERNAL: TeamMember[] = [
   },
   {
     id: 9,
-    name: 'Sam Cossit',
-    role: 'Public Enagegement Coordinator',
-    image: '/assets/team/Sam.jpg',
+    name: 'Nivla Arevalo',
+    role: 'Secretary',
+    image: '/assets/team/Nivla.jpg',
     pronouns: 'he/him',
     bio: '',
   },
@@ -81,6 +81,14 @@ export const INTERNAL: TeamMember[] = [
 export const EXTERNAL: TeamMember[] = [
   {
     id: 10,
+    name: 'Sam Cossit',
+    role: 'Public Engagement Coordinator',
+    image: '/assets/team/Sam.jpg',
+    pronouns: 'he/him',
+    bio: '',
+  },
+  {
+    id: 11,
     name: 'Amber Fink',
     role: 'Outreach Coordinator',
     image: '/assets/team/Amber.jpg',
@@ -88,7 +96,7 @@ export const EXTERNAL: TeamMember[] = [
     bio: '',
   },
   {
-    id: 11,
+    id: 12,
     name: 'Maleeha Amjad',
     role: 'Hospitality Coordinator',
     image: undefined,
@@ -96,7 +104,7 @@ export const EXTERNAL: TeamMember[] = [
     bio: '',
   },
   {
-    id: 12,
+    id: 13,
     name: 'Lily Evanochko',
     role: 'Innovative Engagement Coordinator',
     image: '/assets/team/Lily.jpg',
@@ -104,7 +112,7 @@ export const EXTERNAL: TeamMember[] = [
     bio: '',
   },
   {
-    id: 13,
+    id: 14,
     name: 'Kira Dureault',
     role: 'Event Coordinator',
     image: '/assets/team/Kira.jpg',
@@ -115,7 +123,7 @@ export const EXTERNAL: TeamMember[] = [
 
 export const MARKETING: TeamMember[] = [
   {
-    id: 14,
+    id: 15,
     name: 'Lara Dixon',
     role: 'Social Media Coordinator',
     image: '/assets/team/Lara.jpg',
@@ -123,7 +131,7 @@ export const MARKETING: TeamMember[] = [
     bio: '',
   },
   {
-    id: 15,
+    id: 16,
     name: 'Jasnoor Sidhu',
     role: 'Social Media Coordinator',
     image: '/assets/team/Jasnoor.jpg',
@@ -131,7 +139,7 @@ export const MARKETING: TeamMember[] = [
     bio: '',
   },
   {
-    id: 16,
+    id: 17,
     name: 'Sydney Wszolek',
     role: 'Media Coordinator',
     image: '/assets/team/Sydney.jpg',
@@ -139,7 +147,7 @@ export const MARKETING: TeamMember[] = [
     bio: '',
   },
   {
-    id: 17,
+    id: 18,
     name: 'Eldon Li',
     role: 'Videography Coordinator',
     image: '/assets/team/Eldon.jpg',
@@ -147,7 +155,7 @@ export const MARKETING: TeamMember[] = [
     bio: '',
   },
   {
-    id: 18,
+    id: 19,
     name: 'Shelby Kaytor',
     role: 'Creative & Social Approach Coordinator',
     image: '/assets/team/Shelby.jpg',
