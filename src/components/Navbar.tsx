@@ -150,6 +150,15 @@ function Navbar() {
         </svg>
       </button>
 
+      {/* Overlay for mobile menu */}
+      {isMenuOpen && (
+        <div
+          className="fixed inset-0 bg-black opacity-50 z-30 transition-opacity duration-300"
+          onClick={toggleMenu}
+          aria-label="Close menu overlay"
+        />
+      )}
+
       {/* Mobile slide-in menu */}
       <div
         className={`fixed top-0 right-0 w-2/3 sm:w-1/2 max-w-sm h-full flex justify-between bg-cream z-40 transform transition-transform duration-300 ease-in-out ${
