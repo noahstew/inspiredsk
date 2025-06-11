@@ -47,6 +47,11 @@ function ContactSection() {
               }
             `}</style>
           </h2>
+          <p className="text-2xl font-league-spartan text-pistachio mb-12">
+            Interested in volunteering or partnering with us? We’d love to hear
+            from you! Fill out the form below and we’ll get back to you as soon
+            as possible.
+          </p>
           <ContactForm />
         </div>
 
