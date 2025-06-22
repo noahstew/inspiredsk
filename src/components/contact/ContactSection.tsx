@@ -11,24 +11,35 @@ function ContactSection() {
       <div className="max-w-7xl w-full flex flex-col lg:flex-row gap-36">
         {/* Left: Form (2/3) */}
         <div className="w-full lg:w-2/3">
-          <h2 className="text-6xl font-league-spartan font-bold text-pistachio mb-8 flex flex-wrap">
-            {heading.split('').map((char, i) => (
-              <span
-                key={i}
-                className="inline-block"
-                style={{
-                  animationName: 'waveUp',
-                  animationDuration: '5.2s',
-                  animationTimingFunction: 'ease-in-out',
-                  animationIterationCount: 'infinite',
-                  animationDelay: `${i * 0.09}s`,
-                  display: char === ' ' ? 'inline-block' : undefined,
-                  minWidth: char === ' ' ? '0.5em' : undefined,
-                }}
-              >
-                {char === ' ' ? '\u00A0' : char}
-              </span>
-            ))}
+          <h2 className="text-6xl font-league-spartan font-bold text-pistachio mb-8">
+            {heading.split(' ').map((word, wordIndex) => {
+              const previousWordsLength = heading
+                .split(' ')
+                .slice(0, wordIndex)
+                .reduce((total, prevWord) => total + prevWord.length, 0);
+
+              return (
+                <span key={wordIndex} className="inline-block mr-4 last:mr-0">
+                  {word.split('').map((char, charIndex) => (
+                    <span
+                      key={charIndex}
+                      className="inline-block"
+                      style={{
+                        animationName: 'waveUp',
+                        animationDuration: '5.2s',
+                        animationTimingFunction: 'ease-in-out',
+                        animationIterationCount: 'infinite',
+                        animationDelay: `${
+                          (previousWordsLength + charIndex) * 0.09
+                        }s`,
+                      }}
+                    >
+                      {char}
+                    </span>
+                  ))}
+                </span>
+              );
+            })}
             <style jsx>{`
               @keyframes waveUp {
                 0%,
