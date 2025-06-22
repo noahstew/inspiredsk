@@ -140,14 +140,6 @@ export const MARKETING: TeamMember[] = [
   },
   {
     id: 17,
-    name: 'Sydney Wszolek',
-    role: 'Media Coordinator',
-    image: '/assets/team/Sydney.jpg',
-    pronouns: 'she/her',
-    bio: '',
-  },
-  {
-    id: 18,
     name: 'Eldon Li',
     role: 'Videography Coordinator',
     image: '/assets/team/Eldon.jpg',
@@ -155,7 +147,7 @@ export const MARKETING: TeamMember[] = [
     bio: '',
   },
   {
-    id: 19,
+    id: 18,
     name: 'Shelby Kaytor',
     role: 'Creative & Social Approach Coordinator',
     image: '/assets/team/Shelby.jpg',
