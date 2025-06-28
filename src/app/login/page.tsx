@@ -3,19 +3,43 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import Image from 'next/image';
 
-const ADMIN_PASSWORD = 'password';
-
 export default function AdminLogin() {
   const [input, setInput] = useState('');
   const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
-  const handleLogin = () => {
-    if (input === ADMIN_PASSWORD) {
-      localStorage.setItem('admin-auth', 'true');
-      router.push('/admin');
-    } else {
-      setError('Incorrect password. Please try again.');
+  const handleLogin = async () => {
+    if (!input.trim()) {
+      setError('Please enter a password');
+      return;
+    }
+
+    setIsLoading(true);
+    setError('');
+
+    try {
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ password: input }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        localStorage.setItem('admin-auth', 'true');
+        router.push('/admin');
+      } else {
+        setError(data.error || 'Incorrect password. Please try again.');
+      }
+    } catch (err) {
+      setError('Login failed. Please try again.');
+      console.error('Login error:', err);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -42,7 +66,7 @@ export default function AdminLogin() {
               htmlFor="password"
               className="block text-sm font-medium text-charcoal mb-1"
             >
-              Passcode
+              Password
             </label>
             <input
               id="password"
@@ -53,7 +77,7 @@ export default function AdminLogin() {
                 if (error) setError('');
               }}
               onKeyPress={handleKeyPress}
-              placeholder="Enter admin passcode"
+              placeholder="Enter admin password"
               className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-pistachio"
             />
           </div>
@@ -62,9 +86,10 @@ export default function AdminLogin() {
 
           <button
             onClick={handleLogin}
-            className="w-full bg-pistachio hover:bg-olive text-white font-bold py-2 px-4 rounded-md transition duration-300 ease-in-out"
+            disabled={isLoading}
+            className="w-full bg-pistachio hover:bg-olive disabled:bg-gray-400 disabled:cursor-not-allowed text-white font-bold py-2 px-4 rounded-md transition duration-300 ease-in-out"
           >
-            Login
+            {isLoading ? 'Logging in...' : 'Login'}
           </button>
         </div>
 
