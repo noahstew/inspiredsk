@@ -8,7 +8,10 @@ export const metadata: Metadata = {
     icon: '/favicon.jpg',
   },
   verification: {
-    google: 'xqUvnM1kpG7FINWAmbCCW4pH-dxekkHeAt9UEun_mmk',
+    google: [
+      'xqUvnM1kpG7FINWAmbCCW4pH-dxekkHeAt9UEun_mmk',
+      'ZU3yhmsiXEcrNt29AGuEiRy3csWbceuNkGFYbAG0TXE',
+    ],
   },
 };
 
