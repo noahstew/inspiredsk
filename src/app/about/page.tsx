@@ -4,8 +4,8 @@ import Navbar from '@/components/Navbar';
 import AboutClientSections from '@/components/about/AboutClientSections';
 
 export const metadata: Metadata = {
-  title: 'About | InspiredSK',
-  description: 'Learn more about InspiredSK and our mission.',
+  title: 'About | InspirED Sask',
+  description: 'Learn more about InspirED Saskatchewan and our mission.',
 };
 
 export default function About() {

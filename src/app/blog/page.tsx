@@ -4,7 +4,7 @@ import Footer from '@/components/Footer';
 import BlogPage from '@/components/blog/BlogPage';
 
 export const metadata: Metadata = {
-  title: 'Blog | InspiredSK',
+  title: 'Blog | InspirED Sask',
   description: 'Read about our latest news, events and updates.',
 };
 

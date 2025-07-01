@@ -4,7 +4,7 @@ import TeamPage from '@/components/team/TeamPage';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Team | InspiredSK',
+  title: 'Team | InspirED Sask',
   description: 'Meet the team behind our project.',
 };
 

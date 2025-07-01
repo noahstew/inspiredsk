@@ -302,7 +302,7 @@ function ViewBlogPostPage() {
   // Update document title dynamically
   useEffect(() => {
     if (post?.title) {
-      document.title = `${post.title} | InspirED SK`;
+      document.title = `${post.title} | InspirED Sask`;
     }
   }, [post]);
 

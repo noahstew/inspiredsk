@@ -5,8 +5,8 @@ import ContactSection from '@/components/contact/ContactSection';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Contact | InspiredSK',
-  description: 'Contact us for more information or inquiries.',
+  title: 'Contact Us | InspirED Sask',
+  description: "Want to volunteer? partner? Let's get in touch!",
 };
 
 function Contact() {
