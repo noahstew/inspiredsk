@@ -12,7 +12,7 @@ export const DIRECTORS: TeamMember[] = [
   {
     id: 2,
     name: 'Anneka McLaren',
-    role: 'Co-Founder & Director of External Affairs',
+    role: 'Founder & Director of External Affairs',
     image: '/assets/team/Anneka.jpg',
     pronouns: 'she/her',
     bio: '',
@@ -63,7 +63,7 @@ export const INTERNAL: TeamMember[] = [
   {
     id: 8,
     name: 'Kai Poulin',
-    role: 'Website Analytics Manager',
+    role: 'Website Analytics Coordinator',
     image: '/assets/team/Kai.jpg',
     pronouns: 'he/him',
     bio: '',
