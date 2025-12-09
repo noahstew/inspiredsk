@@ -1,7 +1,13 @@
 'use client';
 
 import { useState } from 'react';
-import { DIRECTORS, INTERNAL, EXTERNAL, MARKETING } from '@/data/team';
+import {
+  DIRECTORS,
+  INTERNAL,
+  EXTERNAL,
+  MARKETING,
+  GENERAL_MEMBERS,
+} from '@/data/team';
 import { TeamMember } from '@/utils/local-data-types';
 import { teamTypes } from '@/utils/local-data-types';
 import MemberCard from './MemberCard';
@@ -14,6 +20,7 @@ function TeamPage() {
     Internal: INTERNAL,
     External: EXTERNAL,
     Marketing: MARKETING,
+    'General Member': GENERAL_MEMBERS,
   };
 
   const currentTeam = teamMap[selectedType] || [];

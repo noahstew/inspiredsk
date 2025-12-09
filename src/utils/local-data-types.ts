@@ -12,4 +12,5 @@ export const teamTypes: string[] = [
   'Internal',
   'External',
   'Marketing',
+  'General Member',
 ];
