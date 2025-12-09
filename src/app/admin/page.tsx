@@ -27,12 +27,32 @@ export default function AdminDashboard() {
 
   const handleSave = async () => {
     setSaveState('saving');
-    await supabase
+    const { data, error } = await supabase
       .from('site_settings')
       .update({ value: initiative })
-      .eq('key', 'monthly_initiative');
-    setSaveState('updated');
-    setTimeout(() => setSaveState('idle'), 2000);
+      .eq('key', 'monthly_initiative')
+      .select()
+      .single();
+
+    if (!error) {
+      // Update localStorage cache so the navbar uses the new value immediately
+      if (typeof window !== 'undefined') {
+        try {
+          const month = new Date().toLocaleString('default', { month: 'long' });
+          localStorage.setItem('monthly_initiative_value', initiative);
+          localStorage.setItem('monthly_initiative_month', month);
+        } catch (e) {
+          // ignore storage errors
+        }
+      }
+      setSaveState('updated');
+      setTimeout(() => setSaveState('idle'), 2000);
+    } else {
+      // keep user informed — revert to idle and log
+      console.error('Failed to save monthly initiative', error);
+      setSaveState('idle');
+      alert('Failed to save initiative. Please try again.');
+    }
   };
 
   const handleLogout = () => {

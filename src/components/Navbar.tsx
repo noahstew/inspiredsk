@@ -16,18 +16,43 @@ function Navbar() {
   // Fetch monthly initiative from Supabase
   useEffect(() => {
     async function fetchInitiative() {
-      const { data, error } = await supabase
-        .from('site_settings')
-        .select('value')
-        .eq('key', 'monthly_initiative')
-        .single();
+      try {
+        // First check localStorage for a cached value for the current month
+        if (typeof window !== 'undefined') {
+          const cachedMonth = localStorage.getItem('monthly_initiative_month');
+          const cachedValue = localStorage.getItem('monthly_initiative_value');
+          if (cachedMonth === currentMonth && cachedValue) {
+            setMonthlyInitiative(cachedValue);
+            return; // use cached value, skip network
+          }
+        }
 
-      if (error || !data) {
+        const { data, error } = await supabase
+          .from('site_settings')
+          .select('value')
+          .eq('key', 'monthly_initiative')
+          .single();
+
+        if (error || !data) {
+          setMonthlyInitiative('Not set');
+        } else {
+          setMonthlyInitiative(data.value);
+          // Cache value locally for this month
+          if (typeof window !== 'undefined') {
+            try {
+              localStorage.setItem('monthly_initiative_value', data.value);
+              localStorage.setItem('monthly_initiative_month', currentMonth);
+            } catch (e) {
+              // ignore storage errors
+            }
+          }
+        }
+      } catch (err) {
+        console.error('Error fetching monthly initiative:', err);
         setMonthlyInitiative('Not set');
-      } else {
-        setMonthlyInitiative(data.value);
       }
     }
+
     fetchInitiative();
   }, []);
 
