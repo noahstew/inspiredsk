@@ -42,7 +42,7 @@ function Navbar() {
             try {
               localStorage.setItem('monthly_initiative_value', data.value);
               localStorage.setItem('monthly_initiative_month', currentMonth);
-            } catch (e) {
+            } catch {
               // ignore storage errors
             }
           }
@@ -54,7 +54,7 @@ function Navbar() {
     }
 
     fetchInitiative();
-  }, []);
+  }, [currentMonth]);
 
   // Close menu when Escape key is pressed
   useEffect(() => {

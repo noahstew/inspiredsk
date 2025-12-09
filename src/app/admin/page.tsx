@@ -27,7 +27,7 @@ export default function AdminDashboard() {
 
   const handleSave = async () => {
     setSaveState('saving');
-    const { data, error } = await supabase
+    const { error } = await supabase
       .from('site_settings')
       .update({ value: initiative })
       .eq('key', 'monthly_initiative')
@@ -41,7 +41,7 @@ export default function AdminDashboard() {
           const month = new Date().toLocaleString('default', { month: 'long' });
           localStorage.setItem('monthly_initiative_value', initiative);
           localStorage.setItem('monthly_initiative_month', month);
-        } catch (e) {
+        } catch {
           // ignore storage errors
         }
       }
