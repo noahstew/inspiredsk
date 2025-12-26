@@ -22,7 +22,7 @@ function AboutDescription() {
       </div>
       <div className="md:w-1/2 mt-6 md:mt-0">
         <Image
-          src="/assets/team.png"
+          src="/assets/who.jpeg"
           alt="Team members holding donation signs"
           className="w-full h-auto rounded-lg shadow-md"
           width={500}
