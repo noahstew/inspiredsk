@@ -143,14 +143,6 @@ export const EXTERNAL: TeamMember[] = [
     pronouns: 'He/Him',
     bio: '',
   },
-  {
-    id: 9,
-    name: 'Sam Cossit',
-    role: 'Public Engagement Coordinator',
-    image: '/assets/team/Sam.jpg',
-    pronouns: 'He/Him',
-    bio: '',
-  },
 ];
 
 export const MARKETING: TeamMember[] = [
