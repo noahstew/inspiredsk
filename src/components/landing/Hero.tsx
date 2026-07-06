@@ -15,11 +15,11 @@ export default function Hero() {
   useEffect(() => {
     const observer1 = new IntersectionObserver(
       ([entry]) => setP1Visible(entry.isIntersecting),
-      { threshold: 0.2 }
+      { threshold: 0.2 },
     );
     const observer2 = new IntersectionObserver(
       ([entry]) => setP2Visible(entry.isIntersecting),
-      { threshold: 0.2 }
+      { threshold: 0.2 },
     );
     if (p1Ref.current) observer1.observe(p1Ref.current);
     if (p2Ref.current) observer2.observe(p2Ref.current);

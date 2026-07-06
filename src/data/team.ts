@@ -178,55 +178,15 @@ export const MARKETING: TeamMember[] = [
     pronouns: 'He/Him',
     bio: '',
   },
-  {
-    id: 23,
-    name: 'Shelby Kaytor',
-    role: 'Creative & Social Approach Coordinator',
-    image: '/assets/team/Shelby.jpg',
-    pronouns: 'She/Her',
-    bio: '',
-  },
-  {
-    id: 24,
-    name: 'Showbee Estinor',
-    role: 'Media Coordinator',
-    image: '/assets/team/Showbee.jpg',
-    pronouns: 'She/Her',
-    bio: '',
-  },
 ];
 
 export const GENERAL_MEMBERS: TeamMember[] = [
-  {
-    id: 25,
-    name: 'Zachary Wagner',
-    role: '',
-    image: '/assets/team/Zachary.jpg',
-    pronouns: 'She/Her',
-    bio: '',
-  },
   {
     id: 26,
     name: 'Elizabeth Madsen',
     role: '',
     image: '/assets/team/Elizabeth.jpg',
     pronouns: 'She/Her',
-    bio: '',
-  },
-  {
-    id: 27,
-    name: 'Iris Park',
-    role: '',
-    image: '/assets/team/Iris.jpg',
-    pronouns: 'She/Her',
-    bio: '',
-  },
-  {
-    id: 28,
-    name: 'Presley Rathwell',
-    role: '',
-    image: '/assets/team/Presley.jpg',
-    pronouns: 'She/They',
     bio: '',
   },
   {

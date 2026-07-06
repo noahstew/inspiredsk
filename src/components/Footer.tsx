@@ -13,7 +13,7 @@ function Footer() {
       <Link
         className="text-pistachio hover:text-olive"
         target="_blank"
-        href="https://nostew.com"
+        href="https://nostew.me"
       >
         nostew
       </Link>{' '}
